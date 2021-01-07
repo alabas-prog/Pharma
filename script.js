@@ -12,21 +12,56 @@ function validate(){
     let pwd = $('#inputPassWord').val();
     db.transaction( function (tx){
          tx.executeSql('SELECT * FROM Users where username = ? and password = ?', [userName, pwd], function (tx, results) { 
-            let user =results.rows[0];
-                
-            if (user) {
+
+            if (results.rows[0]) {
                 console.log('correct password')
-                // location.href("http://www.google.com")
-                function accessAdmin(){
-                    location.replace('admin.html')
+                
+                function accessHome(){
+                    location.replace('index.html')
                 };
-                accessAdmin();
+
+                accessHome();
                 
             }
             else {
-                console.log('worng password')
+                alert('worng password')
             }
          }, null); 
     });
 }
+// ***********************Admin page*********************
+
+function addUser(){
+    let userName = $('#addName').val();
+    let pwd = $('#addPassword').val();
+
+    console.log(userName)
+    console.log(pwd)
+
+    db.transaction(function (tx) {
+        tx.executeSql('insert into Users values (?, ?)',[userName, pwd])
+    })
+
+    window.location.reload();
+}
+
+db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT * FROM Users",
+      [],
+      function (tx, results) {
+        var html = "<table class='table'> <thead class='thead-light'> <tr><th scope='col'>UserName</th><th scope='col'>Password</th></tr></thead><tbody>";
+        for (var i = 0; i < results.rows.length; i++) {
+          html += "<tr>";
+          for (var prop in results.rows.item(i)) {
+            html += "<td>" + results.rows.item(i)[prop] + "</td>";
+          }
+          html += "</tr>";
+        }
+        html += "</tbody></table>";
+        document.getElementById("usersTable").innerHTML = html;
+      },
+      null
+    );
+  });
 
