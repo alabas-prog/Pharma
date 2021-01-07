@@ -50,7 +50,7 @@ db.transaction(function (tx) {
       "SELECT * FROM Users",
       [],
       function (tx, results) {
-        var html = "<table class='table'> <thead class='thead-light'> <tr><th scope='col'>UserName</th><th scope='col'>Password</th></tr></thead><tbody>";
+        var html = "";
         for (var i = 0; i < results.rows.length; i++) {
           html += "<tr>";
           for (var prop in results.rows.item(i)) {
@@ -58,7 +58,6 @@ db.transaction(function (tx) {
           }
           html += "</tr>";
         }
-        html += "</tbody></table>";
         document.getElementById("usersTable").innerHTML = html;
       },
       null
