@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="row mt-3">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="CustomerName"
+                  id="customerName"
+                />
+              </div>
+              <div class="col">
+                <select class="custom-select" id="type">
+                  <option selected>Type</option>
+                  <option value="sell">Sell</option>
+                  <option value="buy">Buy</option>
+                </select>
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Item name"
+                  id="itemName"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Quantitiy"
+                  id="qty"
+                />
+              </div>
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="addInvoiceItem()"
+                >
+                  Add Item
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  onclick="saveInvoice()"
+                >
+                  Save Invoice
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="col mt-5">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">item</th>
+                  <th scope="col">qty</th>
+                </tr>
+              </thead>
+              <tbody id="invoiceTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
