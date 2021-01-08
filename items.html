@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card mb-4" style="max-width: 800px">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <canvas id="showscreenshot" class="w-100"></canvas>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Add Item</h5>
+                  <form class="mb-5">
+                    <div class="form-row">
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Name" id="itemName">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Quantitiy" id="itemQuantity">
+                      </div>
+                      <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="addItem()"
+                  >
+                    Save
+                  </button>
+                    </div>
+                  </form>
+                  
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    onclick="openCamera()"
+                  >
+                    Start Camera
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onclick="stopCamera()"
+                  >
+                    Stop Camera
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-dark"
+                    onclick="takescreenshot()"
+                  >
+                    Take Photo
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-info"
+                    onclick="savePhoto()"
+                  >
+                    Save Data
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <video autoplay="true" id="videoElement"></video>
+          <div class="col-md-6" >
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Qty</th>
+                  </tr>
+                </thead>
+                <tbody id="items">
+                  
+                </tbody>
+              </table>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
