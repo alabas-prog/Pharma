@@ -22,6 +22,7 @@
                   class="form-control"
                   placeholder="CustomerName"
                   id="customerName"
+                  autocomplete="on"
                 />
               </div>
               <div class="col">
@@ -31,17 +32,26 @@
                   <option value="buy">Buy</option>
                 </select>
               </div>
-              <div class="col">
-                <input
+              <!-- <div class="col"> -->
+              <!-- <input
                   type="text"
                   class="form-control"
                   placeholder="Item name"
                   id="itemName"
-                />
+                /> -->
+              <!-- </div> -->
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <input list="invoiceItems" name="itemsChoice" id="itemsChoice" class="form-control" placeholder="items"/>
+
+                <datalist id="invoiceItems">
+                  <option value="Edge"></option>
+                </datalist>
               </div>
               <div class="col">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   placeholder="Quantitiy"
                   id="qty"
@@ -56,16 +66,20 @@
                   Add Item
                 </button>
               </div>
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  onclick="saveInvoice()"
-                >
-                  Save Invoice
-                </button>
-              </div>
             </div>
+           
+              <div class="row mt-3">
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    onclick="saveInvoice()"
+                  >
+                    Save Invoice
+                  </button>
+                </div>
+              </div>
+            
           </form>
         </div>
       </div>

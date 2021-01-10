@@ -162,65 +162,118 @@ db.transaction(function (tx) {
 date = new Date().toDateString() + ' ' + new Date().toLocaleTimeString();
 
 
+
 function addInvoiceItem() {
     let type = $('#type').val();
     let customerName = $('#customerName').val();
-    let itemName = $('#itemName').val();
-    let qty = $('#qty').val();
+    let itemName = $('#itemsChoice').val();
+    let inputQuantity = $('#qty').val();
 
-    if (customerName && type && itemName && qty) {
-        $('#invoiceTable').append("<tr><td>" + itemName + "</td><td>" + qty + "</td></tr>")
-        $('#itemName').val('');
-        $('#qty').val('');
-    } else {
-        alert('please insert all fields')
-    }
+    if (customerName && type && itemName && inputQuantity) {
+        if (type == 'buy') {
+            $('#invoiceTable').append("<tr><td>" + itemName + "</td><td>" + inputQuantity + "</td></tr>")
 
+            $('#itemsChoice').val('');
+            $('#qty').val('');
 
-}
+            $('#customerName').attr("disabled", true); 
+            $('#type').attr("disabled", true); 
+        } else if (type = 'sell') {
+            db.transaction(function (tx) {
+                tx.executeSql('select quantity from items where name = ?', [itemName], function (tx, results) {
 
-function saveInvoice() {
-    let type = $('#type').val();
-    let customerName = $('#customerName').val();
-    if (customerName && type) {
-        db.transaction(function (tx) {
-            tx.executeSql('select invoiceNum from Invoice order by invoiceNum desc', [],
-                function (tx, results) {
-                    // console.log(results) test
-                    var invoiceNum;
+                    currentQuantity = results.rows.item(0).quantity
 
-                    if (results.rows == null) {
-                        invoiceNum = 1;
+                    if (currentQuantity > 0 && currentQuantity >= inputQuantity) {
+                        $('#invoiceTable').append("<tr><td>" + itemName + "</td><td>" + inputQuantity + "</td></tr>")
+                        $('#itemName').val('');
+                        $('#qty').val('');
                     } else {
-                        var row = results.rows.item(0).invoiceNum
-                        invoiceNum = parseInt(row) + 1;
-                        // console.log('invoiceNum = ' + invoiceNum) test
+                        alert(`not enough quantity\ncurren quantity = ${currentQuantity}`)
                     }
 
-                    // console.log("invoiceNum") test
-                    // console.log(invoiceNum) test
-
-
-                    $('#invoiceTable tr').each(function () {
-
-                        let sql = 'insert into Invoice (invoiceNum, date, customerName, type, items,quantity) values ("' +
-                            invoiceNum + '","' +
-                            date + '","' +
-                            customerName + '","' +
-                            type + '"'
-                        $(this).find('td').each(function () {
-                            sql += ',"' + $(this).html() + '"'
-                        });
-                        sql += ')'
-                        console.log(sql)
-                        db.transaction(function (tx) {
-                            tx.executeSql(sql);
-                        });
-                    });
-                });
-                alert('invoice added')
-        });
+                })
+            })
+        }
     } else {
-        alert('insert all fields')
+        alert('please insert all fields correctly')
     }
 }
+
+    function saveInvoice() {
+        let type = $('#type').val();
+        let customerName = $('#customerName').val();
+        if (customerName && type) {
+            db.transaction(function (tx) {
+                tx.executeSql('select invoiceNum from Invoice order by invoiceNum desc', [],
+                    function (tx, results) {
+                        // console.log(results) test
+                        var invoiceNum;
+
+                        if (results.rows == null) {
+                            invoiceNum = 1;
+                        } else {
+                            var row = results.rows.item(0).invoiceNum
+                            invoiceNum = parseInt(row) + 1;
+                            // console.log('invoiceNum = ' + invoiceNum) test
+                        }
+
+                        // console.log("invoiceNum") test
+                        // console.log(invoiceNum) test
+
+
+                        $('#invoiceTable tr').each(function () {
+
+                            let sql = 'insert into Invoice (invoiceNum, date, customerName, type, items,quantity) values ("' +
+                                invoiceNum + '","' +
+                                date + '","' +
+                                customerName + '","' +
+                                type + '"'
+                            $(this).find('td').each(function () {
+                                sql += ',"' + $(this).html() + '"'
+                            });
+                            sql += ')'
+                            // console.log(sql) test
+                            db.transaction(function (tx) {
+                                tx.executeSql(sql);
+                            });
+                        });
+                    });
+
+                    $('#invoiceTable tr').each(function() {
+                        let arr = []
+                        let i = 0
+                      $( this ).find('td').each(function() {
+                        arr[i] = $(this).html() 
+                        i++;
+                    });
+                    // console.log(arr) test
+                    db.transaction(function (tx) {
+                        let plusOrMinus = (type == 'buy') ? '+' : "-"
+                        tx.executeSql('update Items set quantity = quantity ' + plusOrMinus + ' ? where name = ?', [arr[1], arr[0]])
+                    });
+                });
+                    alert('invoice added')
+                    window.location.reload();
+                });
+        } else {
+            alert('insert all fields')
+        }
+    }
+
+    db.transaction(function (tx) {
+        tx.executeSql(
+            "SELECT name FROM Items ORDER BY name",
+            [],
+            function (tx, results) {
+                var html = "";
+                for (var i = 0; i < results.rows.length; i++) {
+                    for (var prop in results.rows.item(i)) {
+                        html += "<option value = '" + results.rows.item(i)[prop] + "'></option>";
+                    }
+                }
+                document.getElementById("invoiceItems").innerHTML = html;
+            },
+            null
+        );
+    });
