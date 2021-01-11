@@ -6,11 +6,46 @@
     <title>Admin</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+ <script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
 </head>
-<body>
+<body style="background-color: #F5F5F5;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+      <a class="navbar-brand" href="invoice.html">Pharma</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="invoice.html"
+              >Invoice</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="items.html">Items</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="admin.html">Admin</a>
+          </li>
+          <li class="nav-item  ml-5">
+            <a class="nav-link" href="login.html" onclick="logOut()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="container h-100">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 mt-5">
                 <div class="card  mt-5">
                     <div class="card-body">
                       <form>
@@ -34,12 +69,13 @@
                           />
                         </div>
                         <button type="reset" class="btn btn-primary" onclick="addUser()">Add</button>
+                        <button type="button" class="btn btn-danger" onclick="removeUser()">Remove</button>
                       </form>
                     </div>
             </div>
         </div>
         <div class="col-md-6 mt-5" >
-            <table class="table">
+            <table class="table" style="background-color: white;">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">UserName</th>
@@ -52,6 +88,7 @@
               </table>
         </div>
     </div>
-    <script src="script.js"></script>
+  </div>
+    <script src="admin.js"></script>
 </body>
 </html>

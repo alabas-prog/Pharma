@@ -10,11 +10,50 @@
     />
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
   </head>
-  <body>
+  <body style="background-color: #F5F5F5;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="invoice.html">Pharma</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="invoice.html"
+                >Invoice</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="items.html">Items</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="admin.html">Admin</a>
+            </li>
+            <li class="nav-item ml-5">
+              <a class="nav-link" href="login.html" onclick="logOut()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <div class="card mb-4" style="max-width: 800px">
+        
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col ml-5">
+          <div class="card mt-5 ml-5" style="max-width: 800px">
             <div class="row no-gutters">
               <div class="col-md-4">
                 <canvas id="showscreenshot" class="w-100"></canvas>
@@ -28,7 +67,7 @@
                         <input type="text" class="form-control" placeholder="Name" id="itemName">
                       </div>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Quantitiy" id="itemQuantity">
+                        <input type="number" class="form-control" placeholder="Quantitiy" id="itemQuantity">
                       </div>
                       <button
                     type="button"
@@ -74,22 +113,27 @@
             </div>
           </div>
           <video autoplay="true" id="videoElement"></video>
-          <div class="col-md-6" >
-            <table class="table">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Qty</th>
-                  </tr>
-                </thead>
-                <tbody id="items">
-                  
-                </tbody>
-              </table>
-        </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col " >
+                <table class="table " style="background-color: white;">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Qty</th>
+                      </tr>
+                    </thead>
+                    <tbody id="items">
+                      
+                    </tbody>
+                  </table>
+            </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="items.js"></script>
   </body>
 </html>
