@@ -2,11 +2,7 @@ if(sessionStorage.validation == 'admin' || sessionStorage.validation == 'user'){
 let db = openDatabase('pharmaDB', '1.0', 'Pharma DataBase', 50 * 1024 * 1024);
 
 db.transaction(function (tx) {
-    // tx.executeSql('DROP TABLE Invoice ');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Users (username unique, password)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS Items (name unique, quantity, picture)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Invoice (invoiceNum, date, customerName, type, items, quantity)');
-    // tx.executeSql('insert into Users values ("Admin","123")');
 });
 
 var video = document.querySelector("#videoElement");

@@ -10,7 +10,7 @@
     />
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
   </head>
-  <body style="background-color: #F5F5F5;">
+  <body style="background-color: #f5f5f5">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="invoice.html">Pharma</a>
@@ -27,29 +27,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-              <a class="nav-link" href="invoice.html"
-                >Invoice</a
-              >
+            <li class="nav-item">
+              <a class="nav-link" href="invoice.html">Invoice</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="items.html">Items</a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <a class="nav-link" href="admin.html">Admin</a>
             </li>
             <li class="nav-item ml-5">
-              <a class="nav-link" href="login.html" onclick="logOut()">Logout</a>
+              <a class="nav-link" href="login.html" onclick="logOut()"
+                >Logout</a
+              >
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container">
-      <div class="row">
-        
-      </div>
-    </div>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col ml-5">
@@ -64,21 +59,31 @@
                   <form class="mb-5">
                     <div class="form-row">
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Name" id="itemName">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Name"
+                          id="itemName"
+                        />
                       </div>
                       <div class="col">
-                        <input type="number" class="form-control" placeholder="Quantitiy" id="itemQuantity">
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Quantitiy"
+                          id="itemQuantity"
+                        />
                       </div>
                       <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="addItem()"
-                  >
-                    Save
-                  </button>
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="addItem()"
+                      >
+                        Save
+                      </button>
                     </div>
                   </form>
-                  
+
                   <button
                     type="button"
                     class="btn btn-success"
@@ -105,32 +110,38 @@
                     class="btn btn-info"
                     onclick="savePhoto()"
                   >
-                    Save Data
+                    Save photo
                   </button>
                 </div>
               </div>
-              
             </div>
           </div>
-          <video autoplay="true" id="videoElement"></video>
+
+          <div class="row justify-content-center">
+            <div class="col ml-5">
+              <video
+                autoplay="true"
+                id="videoElement"
+                style="max-width: 300px"
+              ></video>
+            </div>
+          </div>
+
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col " >
-                <table class="table " style="background-color: white;">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Qty</th>
-                      </tr>
-                    </thead>
-                    <tbody id="items">
-                      
-                    </tbody>
-                  </table>
-            </div>
+              <div class="col">
+                <table class="table" style="background-color: white">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Qty</th>
+                    </tr>
+                  </thead>
+                  <tbody id="items"></tbody>
+                </table>
+              </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

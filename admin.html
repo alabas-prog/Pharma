@@ -68,7 +68,16 @@
                             name="addPassword"
                           />
                         </div>
-                        <button type="reset" class="btn btn-primary" onclick="addUser()">Add</button>
+                        <div class="form-group">
+                          <label for="addPassword2">Confirm Password</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="addPassword2"
+                            name="addPassword2"
+                          />
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addUser()">Add</button>
                         <button type="button" class="btn btn-danger" onclick="removeUser()">Remove</button>
                       </form>
                     </div>
