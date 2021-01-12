@@ -1,3 +1,3 @@
 # Pharma
-used to manage a pharmacy
-user name and password = admin
+/nused to manage a pharmacy
+/nuser name and password = admin
